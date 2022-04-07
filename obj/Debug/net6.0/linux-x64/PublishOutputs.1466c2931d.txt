@@ -1,0 +1,2 @@
+/mnt/Bonk/Source/dotnet/batman/bin/publish/batman.pdb
+/mnt/Bonk/Source/dotnet/batman/bin/publish/batman
