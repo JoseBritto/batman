@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R+TGlh78UDLjBStMePGGLxBKaBzG4NA7TFeChwJ0iLE27mJtwnVpDoLfzI7F2m9VQHe27zdTbMGlj5jS4t90WA==",
+  "dgSpecHash": "6Ko+DFuFJ87LoXMlXt50OVjohMnN+kZMMaa/XClVVU+FJt3OWstPVPD+hy8Z0ayOdMRAlkPyscr9i+jTpB2x8Q==",
   "success": true,
-  "projectFilePath": "/mnt/Bonk/Source/dotnet/batman/batman.csproj",
+  "projectFilePath": "/home/britto/Source/C#/batman/batman.csproj",
   "expectedPackageFiles": [
     "/home/britto/.nuget/packages/cocona/2.0.3/cocona.2.0.3.nupkg.sha512",
     "/home/britto/.nuget/packages/cocona.core/2.0.3/cocona.core.2.0.3.nupkg.sha512",
@@ -31,15 +31,17 @@
     "/home/britto/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/home/britto/.nuget/packages/microsoft.extensions.options.configurationextensions/6.0.0/microsoft.extensions.options.configurationextensions.6.0.0.nupkg.sha512",
     "/home/britto/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/home/britto/.nuget/packages/microsoft.net.illink.tasks/8.0.1/microsoft.net.illink.tasks.8.0.1.nupkg.sha512",
     "/home/britto/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "/home/britto/.nuget/packages/system.diagnostics.eventlog/6.0.0/system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "/home/britto/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/home/britto/.nuget/packages/system.text.encodings.web/6.0.0/system.text.encodings.web.6.0.0.nupkg.sha512",
     "/home/britto/.nuget/packages/system.text.json/6.0.0/system.text.json.6.0.0.nupkg.sha512",
-    "/home/britto/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/6.0.2/microsoft.netcore.app.runtime.linux-x64.6.0.2.nupkg.sha512",
-    "/home/britto/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/6.0.2/microsoft.aspnetcore.app.runtime.linux-x64.6.0.2.nupkg.sha512",
-    "/home/britto/.nuget/packages/microsoft.netcore.app.crossgen2.linux-x64/6.0.2/microsoft.netcore.app.crossgen2.linux-x64.6.0.2.nupkg.sha512",
-    "/home/britto/.nuget/packages/microsoft.netcore.app.host.linux-x64/6.0.2/microsoft.netcore.app.host.linux-x64.6.0.2.nupkg.sha512"
+    "/home/britto/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/8.0.1/microsoft.netcore.app.runtime.linux-x64.8.0.1.nupkg.sha512",
+    "/home/britto/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.1/microsoft.aspnetcore.app.ref.8.0.1.nupkg.sha512",
+    "/home/britto/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/8.0.1/microsoft.aspnetcore.app.runtime.linux-x64.8.0.1.nupkg.sha512",
+    "/home/britto/.nuget/packages/microsoft.netcore.app.crossgen2.linux-x64/8.0.1/microsoft.netcore.app.crossgen2.linux-x64.8.0.1.nupkg.sha512",
+    "/home/britto/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.1/microsoft.netcore.app.host.linux-x64.8.0.1.nupkg.sha512"
   ],
   "logs": []
 }
