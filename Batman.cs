@@ -99,13 +99,6 @@ public class Batman
         Console.WriteLine("Removing service file");
         File.Delete(SERVICE_FILE);
     }
-
-    public enum BatMode
-    {
-        Full = 100,
-        Half = 60,
-        Balanced = 80
-    }
 }
 
 

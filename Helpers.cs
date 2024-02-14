@@ -27,6 +27,12 @@ public static class Helpers
                 return true;
         }
         return false;       
-
+    }
+    
+    public enum BatMode
+    {
+        Full = 100,
+        Half = 60,
+        Balanced = 80
     }
 }
