@@ -2,21 +2,18 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using Cocona;
+using static batman.Helpers;
+using static batman.Constants;
 
 public class Batman
 {
-    const string BAT_CHARGE_END_THRESHOLD_FILE = "/sys/class/power_supply/BAT0/charge_control_end_threshold";
-    const string BAT_END_THRESHOLD_CONFIG_FILE = "/etc/max_charge";
-
     [Command("cap")]
     public void ShowCurrentCapacity()
     {
-        int current;
-        int persistent;
-        current = int.Parse(File.ReadAllText(BAT_CHARGE_END_THRESHOLD_FILE));
+        var current = int.Parse(File.ReadAllText(BAT_CHARGE_END_THRESHOLD_FILE));
         if(File.Exists(BAT_END_THRESHOLD_CONFIG_FILE))
         {
-            persistent = int.Parse(File.ReadAllText(BAT_END_THRESHOLD_CONFIG_FILE));
+            var persistent = int.Parse(File.ReadAllText(BAT_END_THRESHOLD_CONFIG_FILE));
             if(persistent != current)
             {
                 Console.WriteLine($"For this session the battery will charge upto {current}% \n" + 
@@ -34,35 +31,76 @@ public class Batman
         int newcap = (int)mode;
         if(!IsRoot())
         {
-            Console.WriteLine("This program should be run as root to chage current battery charge mode");
+            Console.WriteLine("This program should be run as root to change current battery charge mode");
             return;
         }
         if(!noPersist)
         {
-            File.WriteAllText(BAT_END_THRESHOLD_CONFIG_FILE, newcap + "\n");            
+            if(!IsInstalled())
+            {
+                Console.WriteLine("Service not installed. Settings will not persist across reboots");
+                Console.WriteLine("To install the service, use 'batman install'");
+            }
+            else
+                File.WriteAllText(BAT_END_THRESHOLD_CONFIG_FILE, newcap + "\n");            
         }
         File.WriteAllText(BAT_CHARGE_END_THRESHOLD_FILE, newcap + "\n");
     }
 
-    public bool IsRoot()
-    {        
-        ProcessStartInfo psi = new ProcessStartInfo("id", "-u"); // Return 0 if root and any other number if not root
-        psi.RedirectStandardOutput = true;
-        psi.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-        psi.UseShellExecute = false;
-        Process reg;
-        reg = System.Diagnostics.Process.Start(psi) ?? throw new Exception("Unable to check if running as root!");
-        using (StreamReader stream = reg.StandardOutput)
-        {
-            string output = stream.ReadToEnd();
-            if(output.Trim() == "0")
-                return true;
-        }
-        return false;       
 
+    [Command("install")]
+    public void Install(bool noConfirm = false)
+    {
+        if (!IsRoot())
+        {
+            Console.WriteLine("This program should be run as root to install the systemd service");
+            return;
+        }
+        
+        if(IsInstalled())
+        {
+            Console.WriteLine("Service already installed. To reinstall, first uninstall the service.");
+            return;
+        }
+        
+        if(!noConfirm)
+        {
+            Console.WriteLine("This will install a systemd service that will set the battery charge limit at boot. Do you want to continue? [y/N]");
+            var response = Console.ReadLine();
+            if(response?.ToLower() != "y")
+            {
+                Console.WriteLine("Aborted");
+                return;
+            }
+        }
+        
+        Console.WriteLine($"Installing service file to {SERVICE_FILE}");
+        File.WriteAllText(SERVICE_FILE, SERVICE_FILE_CONTENT);
+        Console.WriteLine("Service file installed");
+        Console.WriteLine("Use 'systemctl enable batman --now' to enable and run the service");
+    }
+    
+    [Command("uninstall")]
+    public void Uninstall()
+    {
+        if (!IsRoot())
+        {
+            Console.WriteLine("This program should be run as root to uninstall the systemd service");
+            return;
+        }
+        if(!IsInstalled())
+        {
+            Console.WriteLine("Service not installed. Nothing to do.");
+            return;
+        }
+        
+        Console.WriteLine("Disabling service");
+        Process.Start("systemctl", "disable batman").WaitForExit(TimeSpan.FromMinutes(1));
+        Console.WriteLine("Removing service file");
+        File.Delete(SERVICE_FILE);
     }
 
-    public enum BatMode  :int
+    public enum BatMode
     {
         Full = 100,
         Half = 60,
