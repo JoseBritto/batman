@@ -12,6 +12,7 @@
     <LangVersion>12</LangVersion>
     <IsPackable>false</IsPackable>
     <Version>1.1.0</Version>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
   </PropertyGroup>
 
   <ItemGroup>
